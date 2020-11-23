@@ -6,7 +6,10 @@ const Main = () => {
     return (
         <div>
             <Header></Header>
-            <BurgerBuilder></BurgerBuilder>
+            <div className="container">
+                <BurgerBuilder></BurgerBuilder>
+            </div>
+
         </div>
     );
 };
