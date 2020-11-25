@@ -19,7 +19,6 @@ export const reducer = (state = INITIAL_STATE, action) => {
     const ingredients = [...state.ingredients];
     switch (action.type) {
         case actionTypes.ADD_INGREDIENT:
-            const newPrice = this.state.totalPrice + INGREDIENT_PRICES[type];
             for (let item of ingredients) {
                 if (item.type === action.payload) {
                     item.amount++;

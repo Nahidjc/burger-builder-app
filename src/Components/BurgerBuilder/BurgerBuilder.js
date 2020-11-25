@@ -18,9 +18,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addIngredient: (igtype) => dispatch(addIngredient),
-        removeIngredient: (igtype) => dispatch(removeIngredient),
-        updateIngredient: (igtype) => dispatch(updateIngredient()),
+        addIngredient: (igtype) => dispatch(addIngredient(igtype)),
+        removeIngredient: (igtype) => dispatch(removeIngredient(igtype)),
+        updateIngredient: () => dispatch(updateIngredient()),
     }
 }
 
@@ -28,14 +28,6 @@ class BurgerBuilder extends Component {
     state = {
         modalOpen: false,
     }
-
-    // updatePurchasable = ingredients => {
-    //     const sum = ingredients.reduce((sum, element) => {
-    //         return sum + element.amount;
-    //     }, 0);
-    //     this.setState({ purchasable: sum > 0 })
-    // }
-
     addIngredientHandle = type => {
 
         this.props.addIngredient(type);
@@ -47,47 +39,48 @@ class BurgerBuilder extends Component {
         this.props.removeIngredient(type);
         this.props.updateIngredient();
     }
-}
-
-handleCheckout = () => {
-    this.props.history.push("/checkout")
-}
 
 
-toggleModal = () => {
-    this.setState({
-        modalOpen: !this.state.modalOpen
-    })
-}
-render() {
-    return (
+    handleCheckout = () => {
+        this.props.history.push("/checkout")
+    }
 
-        <div >
-            <div className="d-flex flex-md-row flex-column">
-                <Burger ingredients={this.props.ingredients}></Burger>
-                <Controls
-                    ingredientAdded={this.addIngredientHandle}
-                    ingredientRemoved={this.removeIngredientHandle}
-                    price={this.props.totalPrice}
-                    toggleModal={this.toggleModal}
-                    purchasable={this.props.purchasable}
-                ></Controls>
 
+    toggleModal = () => {
+        this.setState({
+            modalOpen: !this.state.modalOpen
+        })
+    };
+
+
+    render() {
+        return (
+
+            <div>
+                <div className="d-flex flex-md-row flex-column">
+                    <Burger ingredients={this.props.ingredients}></Burger>
+                    <Controls
+                        ingredientAdded={this.addIngredientHandle}
+                        ingredientRemoved={this.removeIngredientHandle}
+                        price={this.props.totalPrice}
+                        toggleModal={this.toggleModal}
+                        purchasable={this.props.purchasable}
+                    ></Controls>
+
+                </div>
+                <Modal isOpen={this.state.modalOpen}>
+                    <ModalHeader>Your Order Summery</ModalHeader>
+                    <ModalBody>
+                        <h5>Total Price: {this.props.totalPrice.toFixed(0)} BDT</h5>
+                        <Summary ingredients={this.props.ingredients}></Summary>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="success" onClick={this.handleCheckout}>Continue to Checkout</Button>
+                        <Button color="secondary" onClick={this.toggleModal}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
             </div>
-            <Modal isOpen={this.state.modalOpen}>
-                <ModalHeader>Your Order Summery</ModalHeader>
-                <ModalBody>
-                    <h5>Total Price: {this.props.totalPrice.toFixed(0)} BDT</h5>
-                    <Summary ingredients={this.props.ingredients}></Summary>
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="success" onClick={this.handleCheckout}>Continue to Checkout</Button>
-                    <Button color="secondary" onClick={this.toggleModal}>Cancel</Button>
-                </ModalFooter>
-            </Modal>
-        </div>
-    );
+        )
+    }
 }
-
-};
 export default connect(mapStateToProps, mapDispatchToProps)(BurgerBuilder);
