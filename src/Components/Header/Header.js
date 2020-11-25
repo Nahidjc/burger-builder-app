@@ -5,9 +5,9 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
 } from 'reactstrap';
 import logo from '../assets/logo.png';
+import { NavLink } from 'react-router-dom';
 const Header = () => {
     return (
         <div className="Navigation">
@@ -18,10 +18,10 @@ const Header = () => {
                 </NavbarBrand>
                 <Nav className="mr-md-5">
                     <NavItem>
-                        <NavLink href="#" className="NavLink">Rimi Burger Shop</NavLink>
+                        <NavLink exact to="/" className="NavLink">Rimi's Burger</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="#" className="NavLink">Something</NavLink>
+                        <NavLink exact to="/orders" className="NavLink">Orders</NavLink>
                     </NavItem>
                 </Nav>
             </Navbar>

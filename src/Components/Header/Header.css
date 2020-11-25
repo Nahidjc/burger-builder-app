@@ -12,8 +12,14 @@
   color: white;
   font-size: 25px;
   margin-top: -25px;
+  margin-left: 15px;
 }
 
 .NavLink:hover {
   color: white;
+  text-decoration: none;
+}
+.active {
+  text-shadow: 1px 1px grey;
+  color: wheat;
 }
