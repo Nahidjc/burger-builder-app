@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import Burger from './Burger/Burger';
 import Controls from './Controls/Controls';
+import Summary from './Summary/Summary';
 
 const INGREDIENT_PRICES = {
     salad: 20,
@@ -66,6 +67,7 @@ export default class BurgerBuilder extends Component {
                     <ModalHeader>Your Order Summery</ModalHeader>
                     <ModalBody>
                         <h5>Total Price: {this.state.totalPrice.toFixed(0)} BDT</h5>
+                        <Summary ingredients={this.state.ingredients}></Summary>
                     </ModalBody>
                     <ModalFooter>
                         <Button color="success" onClick={this.toggleModal}>Continue to Checkout</Button>
