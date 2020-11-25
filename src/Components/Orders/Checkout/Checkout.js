@@ -1,5 +1,15 @@
 import { Button } from 'reactstrap';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios';
+
+const mapStateToProps = state => {
+    return {
+        ingredients: state.ingredients,
+        totalPrice: state.totalPrice,
+        purchasable: state.purchasable
+    }
+}
 
 class Checkout extends Component {
     state = {
@@ -13,7 +23,17 @@ class Checkout extends Component {
         this.props.history.goBack("/");
     }
     submitHandler = () => {
-        console.log(this.state.values);
+        const order = {
+            ingredients: this.props.ingredients,
+            customer: this.state.values,
+            price: this.props.totalPrice,
+            orderTime: new Date(),
+
+        }
+        axios.post("https://rimi-burger-shop.firebaseio.com/orders.json", order)
+            .then(response => console.log(response))
+            .catch(err => console.log(err))
+        console.log(order);
     }
 
     inputChangerHandler = e => {
@@ -29,6 +49,14 @@ class Checkout extends Component {
     render() {
         return (
             <div>
+                <h4
+                    style={{
+                        border: "1px solid grey",
+                        boxShadow: "1px 1px #888888",
+                        borderRadius: "5px",
+                        padding: "20px",
+                    }}
+                >Payment: {this.props.totalPrice} BDT</h4>
                 <form style={{
                     border: "1px solid grey",
                     boxShadow: "1px 1px #888888",
@@ -51,4 +79,4 @@ class Checkout extends Component {
 
 };
 
-export default Checkout;
+export default connect(mapStateToProps)(Checkout);
