@@ -39,6 +39,8 @@ export default class BurgerBuilder extends Component {
         this.setState({ ingredients: ingredients, totalPrice: newPrice });
         this.updatePurchasable(ingredients);
     }
+
+
     removeIngredientHandle = type => {
         const ingredients = [...this.state.ingredients];
         const newPrice = this.state.totalPrice - INGREDIENT_PRICES[type];
@@ -51,6 +53,12 @@ export default class BurgerBuilder extends Component {
         }
         this.setState({ ingredients: ingredients, totalPrice: newPrice });
     }
+
+    handleCheckout = () => {
+        this.props.history.push("/checkout")
+    }
+
+
     toggleModal = () => {
         this.setState({
             modalOpen: !this.state.modalOpen
@@ -78,7 +86,7 @@ export default class BurgerBuilder extends Component {
                         <Summary ingredients={this.state.ingredients}></Summary>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="success" onClick={this.toggleModal}>Continue to Checkout</Button>
+                        <Button color="success" onClick={this.handleCheckout}>Continue to Checkout</Button>
                         <Button color="secondary" onClick={this.toggleModal}>Cancel</Button>
                     </ModalFooter>
                 </Modal>

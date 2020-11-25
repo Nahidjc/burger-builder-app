@@ -10,15 +10,14 @@ const Main = () => {
         <div>
             <Header></Header>
             <div className="container">
-                <Route path="/orders">
-                    <Orders></Orders>
+                <Route path="/orders" component={Orders}>
                 </Route>
-                <Route path="/checkout">
-                    <Checkout></Checkout>
+                <Route path="/checkout" component={Checkout}>
+
                 </Route>
                 <Route
-                    path="/" exact>
-                    <BurgerBuilder></BurgerBuilder>
+                    path="/" exact component={BurgerBuilder}>
+
                 </Route>
 
             </div>
