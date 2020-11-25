@@ -12,6 +12,9 @@ class Checkout extends Component {
     goBack = () => {
         this.props.history.goBack("/");
     }
+    submitHandler = () => {
+        console.log(this.state.values);
+    }
 
     inputChangerHandler = e => {
         this.setState(
@@ -38,7 +41,7 @@ class Checkout extends Component {
                         <option value="Cash on Delivery">Cash On Delivery</option>
                         <option value="Bkash">Bkash</option>
                     </select><br />
-                    <Button style={{ backgroundColor: "#D70F64" }} className="mr-auto">Place Order</Button>
+                    <Button style={{ backgroundColor: "#D70F64" }} className="mr-auto" onClick={this.submitHandler}>Place Order</Button>
                     <Button color="secondary" className="ml-1" onClick={this.goBack} >Cancel</Button>
                 </form>
 
