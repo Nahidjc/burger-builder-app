@@ -69,7 +69,7 @@ class Checkout extends Component {
                     modalMsg: "Something Went Wrong! Order Again",
                 })
             })
-        console.log(order);
+        //   console.log(order);
     }
 
     inputChangerHandler = e => {
