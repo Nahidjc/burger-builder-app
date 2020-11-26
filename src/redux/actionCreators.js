@@ -19,3 +19,8 @@ export const updateIngredient = () => {
 
     }
 }
+export const resetIngredients = () => {
+    return {
+        type: actionTypes.RESET_INGREDIENTS,
+    }
+}
