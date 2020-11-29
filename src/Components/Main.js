@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import Auth from './Auth/Auth';
 import BurgerBuilder from './BurgerBuilder/BurgerBuilder';
 import Header from './Header/Header';
 import Checkout from './Orders/Checkout/Checkout';
@@ -10,15 +11,14 @@ const Main = () => {
         <div>
             <Header></Header>
             <div className="container">
-                <Route path="/orders" component={Orders}>
-                </Route>
-                <Route path="/checkout" component={Checkout}>
+                <Route path="/orders" component={Orders} />
 
-                </Route>
-                <Route
-                    path="/" exact component={BurgerBuilder}>
+                <Route path="/checkout" component={Checkout} />
 
-                </Route>
+                <Route path="/login" component={Auth} />
+                <Route path="/" exact component={BurgerBuilder} />
+
+
 
             </div>
 
