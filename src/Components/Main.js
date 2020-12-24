@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { authCheck } from '../redux/authActionCreators';
 import Auth from './Auth/Auth';
+import Logout from './Auth/Logout';
 import BurgerBuilder from './BurgerBuilder/BurgerBuilder';
 import Header from './Header/Header';
 import Checkout from './Orders/Checkout/Checkout';
@@ -40,6 +41,7 @@ class Main extends Component {
                     <Route path="/orders" component={Orders} />
 
                     <Route path="/checkout" component={Checkout} />
+                    <Route path="/logout" component={Logout} />
 
                     <Route path="/" exact component={BurgerBuilder} />
                     <Redirect to="/" />
