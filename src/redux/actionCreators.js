@@ -38,8 +38,9 @@ export const orderLoadFailed = orders => {
     }
 }
 
-export const fetchOrders = () => dispatch => {
-    axios.get("https://rimi-burger-shop.firebaseio.com/orders.json")
+export const fetchOrders = (token, userId) => dispatch => {
+    const queryParams = '&orderBy="userId"&equalTo="' + userId + '"';
+    axios.get('https://rimi-burger-shop.firebaseio.com/orders.json?auth=' + token + queryParams)
         .then(response => {
             dispatch(loadOrders(response.data));
         })
