@@ -1,3 +1,4 @@
+import { Alert } from 'reactstrap';
 import { Formik } from 'formik';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -22,6 +23,11 @@ class Auth extends Component {
         this.setState({ mode: this.state.mode === "Sign Up" ? "Login" : "Sign Up" })
     }
     render() {
+        let err = null;
+        if (this.props.authFailedMsg !== null) {
+            err = <Alert color="danger">{this.props.authFailedMsg}</Alert>
+        }
+
         let form = null;
         if (this.props.authLoading) {
             form = <Spinner />
@@ -122,6 +128,9 @@ class Auth extends Component {
         }
         return (
             <div>
+                {
+                    err
+                }
                 {
                     form
                 }
